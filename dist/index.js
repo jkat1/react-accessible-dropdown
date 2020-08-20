@@ -56,8 +56,9 @@ var Dropdown = function (_Component) {
   _createClass(Dropdown, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      if (newProps.value && newProps.value !== this.state.selected) {
-        this.setState({ selected: newProps.value });
+        if (newProps.value && newProps.value !== this.state.selected) { // CHANGE BY YK
+        let item = this.props.options.filter((x) => x.value == newProps.value);
+        this.setState({ selected: item[0] ? item[0] : newProps.value });
       } else if (!newProps.value && newProps.placeholder) {
         this.setState({ selected: { label: newProps.placeholder, value: '' } });
       } else if (!newProps.value) {
